@@ -1,0 +1,42 @@
+
+---------- LEXICO ----------
+
+<entero> ::= <entero> [0-9]
+<entero> ::= 0|1|2|3|4|5|6|7|8|9
+
+<identificador-led> ::= <identificador-led> <entero>
+<identificador-led> ::= 'L'
+
+<identificador-variable> ::= <identificador-variable> <entero>
+<identificador-variable> ::= 'V'
+
+<porcentaje> ::= <entero> '%'
+
+
+<keyword> ::= 'WHILE'
+<keyword> ::= 'EXIT'
+<keyword> ::= 'SET'
+<keyword> ::= 'SLEEP'
+<keyword> ::= 'END'
+<keyword> ::= 'IF'
+
+<signo-comma> ::= ','
+<signo-igual> ::= '='
+
+<signo-aritmetico> ::= '+'
+<signo-aritmetico> ::= '-'
+
+<signo-condicion> ::= '>='
+<signo-condicion> ::= '<='
+<signo-condicion> ::= '>'
+<signo-condicion> ::= '<'
+
+<token> ::= <entero>
+<token> ::= <identificador-led>
+<token> ::= <identificador-variable>
+<token> ::= <porcentaje>
+<token> ::= <keyword>
+<token> ::= <signo-comma>
+<token> ::= <signo-igual>
+<token> ::= <signo-aritmetico>
+<token> ::= <signo-condicion>
