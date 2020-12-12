@@ -7,6 +7,12 @@ using std::vector;
 using std::cout;
 using std::endl;
 
+/*
+**	Incluido el archivo scanner.hpp que tiene el código del analizador de léxico.
+*/
+#include "scanner.hpp"
+
+
 /**
 **	Abre un archivo y carga su contenido en un arreglo dinámico (vector).
 **
@@ -58,17 +64,16 @@ int main (int argc, char *argv[])
 		return 1;
 	}
 
-	cout << "**** Datos de archivo: ****" << endl << endl;
+	vector<Token> simbolos = analizar (contenido);
 
-	while (contenido.size() > 0)
+	cout << "*** TABLA DE SIMBOLOS ***" << endl;
+
+	while (simbolos.size() != 0)
 	{
-		int valor = contenido.front();
-		cout << valor << " ";
+		Token x = simbolos.front();
+		cout << x.tipo << ": " << x.valor << endl;
 
-		contenido.erase(contenido.begin());
+		simbolos.erase(simbolos.begin());
 	}
 
-	cout << endl;
-
 	return 0;
-}
