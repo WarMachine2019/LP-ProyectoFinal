@@ -1,8 +1,11 @@
+
 #include <iostream>
 #include <fstream>
 #include <vector>
 
 using std::vector;
+using std::cout;
+using std::endl;
 
 /**
 **	Abre un archivo y carga su contenido en un arreglo dinámico (vector).
@@ -30,4 +33,32 @@ vector<char>& leerDatos (const char *src)
 
 	input.close();
 	return *output;
+}
+
+
+/**
+**	Función principal.
+**
+**	Vamos a probar que la función leerDatos() funciona correctamente.
+*/
+
+int main (int argc, char *argv[])
+{
+	if (argc < 2) return 1;
+
+	vector<char>& bytes = leerDatos(argv[1]);
+
+	cout << "**** Datos de archivo: ****" << endl << endl;
+
+	while (bytes.size() > 0)
+	{
+		int valor = bytes.front();
+		cout << valor << " ";
+
+		bytes.erase(bytes.begin());
+	}
+
+	cout << endl;
+
+	return 0;
 }
