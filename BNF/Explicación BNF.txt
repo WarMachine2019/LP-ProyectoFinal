@@ -1,0 +1,28 @@
+Editor: José Zelaya 20161003513
+
+BNF
+--------------------------------------------------------------------------
+     En nuestra notación BNF expresaremos el funcionamiento de nuestro proyecto
+indicando en nuestra gramática que la palabra reservada que SET indica el
+estado de nuestro led, encendido en un porcentaje de 0-99 o apagado en 
+porcentaje 0.
+
+-SLEEP: Indica el timing para que nuestro led se encienda o apague cierta
+cantidad de tiempo, con eso podemos crear patrones con nuestras luces LED
+en conjunto con la sentencia WHILE.
+
+-WHILE: Nos ayudará a crear patrones de luces.
+
+-IF: Para el control de la cantidad de luces.
+
+-END: Finaliza el ciclo IF.
+
+-ASIGNACIÖN: Con el controlamos la manera de acceder al control de cada LED
+por separado, cumpliendo así con la rúbrica, ese control se lleva mediante 
+las variables que comienzan con la letra V.
+
+     Nuestra notación BNF cuenta con todo aprendido en clase. Expresamos las
+condiciones, expresiones, bloques de sentencias para describir paso a paso 
+la gramática de nuestro analizador léxico.
+
+
