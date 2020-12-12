@@ -63,8 +63,19 @@ vector<Token> analizar (vector<char>& contenido)
 					break;
 				}
 
-				cout << "Error: Simbolo " << ch << " no definido" << endl;
-				return simbolos;
+				switch (ch)
+				{
+					case ' ': case '\t': case '\r': case '\n':
+						contenido.erase(contenido.begin());
+						estado = 10;
+						break;
+				
+					default:
+						cout << "Error: Simbolo " << ch << " no definido" << endl;
+						return simbolos;
+				}
+
+				break;
 
 			// **************************************************************
 			case 1:
@@ -98,6 +109,28 @@ vector<Token> analizar (vector<char>& contenido)
 			case 3:
 				buffer[buffer_i] = '\0';
 				simbolos.push_back(Token(TipoToken::PORCENTAJE, buffer));
+				estado = 0; buffer_i = 0;
+				break;
+
+			// **************************************************************
+			case 10:
+				switch (ch)
+				{
+					case ' ': case '\t': case '\r': case '\n':
+						buffer[buffer_i++] = ch;
+						contenido.erase(contenido.begin());
+						estado = 10;
+						break;
+
+					default:
+						estado = 11;
+						break;
+				}
+
+				break;
+
+			// **************************************************************
+			case 11:
 				estado = 0; buffer_i = 0;
 				break;
 		}
