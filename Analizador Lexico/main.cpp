@@ -44,18 +44,28 @@ vector<char>& leerDatos (const char *src)
 
 int main (int argc, char *argv[])
 {
-	if (argc < 2) return 1;
+	if (argc < 2)
+	{
+		cout << "Utilizar:" << std::endl;
+		cout << "    main.exe <archivo>" << std::endl;
+		return 1;
+	}
 
-	vector<char>& bytes = leerDatos(argv[1]);
+	vector<char>& contenido = leerDatos(argv[1]);
+	if (!contenido.size())
+	{
+		cout << "ERROR: El archivo no existe, o no tiene contenido." << endl;
+		return 1;
+	}
 
 	cout << "**** Datos de archivo: ****" << endl << endl;
 
-	while (bytes.size() > 0)
+	while (contenido.size() > 0)
 	{
-		int valor = bytes.front();
+		int valor = contenido.front();
 		cout << valor << " ";
 
-		bytes.erase(bytes.begin());
+		contenido.erase(contenido.begin());
 	}
 
 	cout << endl;
