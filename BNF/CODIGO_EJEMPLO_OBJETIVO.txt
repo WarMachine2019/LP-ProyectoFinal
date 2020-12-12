@@ -1,0 +1,33 @@
+
+V0 = 0
+WHILE
+	SET V0, 100%
+	SLEEP 1000
+	SET V0, 0%
+	V0 = V0 + 1
+
+	IF V0 > 999
+		V0 = 0
+	END
+END
+
+WHILE
+	SET L0, 100%
+	SET L2, 100%
+	SET L4, 100%
+
+	SET L1, 0%
+	SET L3, 0%
+
+	SLEEP 1000
+
+	SET L0, 0%
+	SET L2, 0%
+	SET L4, 0%
+
+	SET L1, 100%
+	SET L3, 100%
+
+	SLEEP 100
+	EXIT
+END
