@@ -111,8 +111,63 @@ vector<Token> analizar (vector<char>& contenido)
 				simbolos.push_back(Token(TipoToken::PORCENTAJE, buffer));
 				estado = 0; buffer_i = 0;
 				break;
-
-			// **************************************************************
+				
+			case 4:
+         		         buffer[buffer_i] = '\0';
+         		         simbolos.push_back(Token(TipoToken::SIGNO_ARITMETICO, buffer));
+         	 	         estado = 0; buffer_i = 0;
+         		         break;
+         
+         	// **************************************************************
+         	        case 5:
+         		        buffer[buffer_i] = '\0';
+         		        simbolos.push_back(Token(TipoToken::SIGNO_COMA, buffer));
+         		        estado = 0; buffer_i = 0;
+         		        break;
+         
+         	// **************************************************************
+         	       case 6:
+         		       buffer[buffer_i] = '\0';
+         		       simbolos.push_back(Token(TipoToken::SIGNO_IGUAL, buffer));
+         		       estado = 0; buffer_i = 0;
+         		       break;
+         
+         	// **************************************************************
+         	      case 7:
+         		      if (ch == '=')
+         		      {
+         			 buffer[buffer_i++] = ch;
+         			 contenido.erase(contenido.begin());
+         			 estado = 9;
+         			 break;
+         		      }
+         
+         		      estado = 9;
+         		      break;
+         
+         	// **************************************************************
+         	     case 8:
+         		    if (ch == '=')
+         		    {
+         		       buffer[buffer_i++] = ch;
+         	               contenido.erase(contenido.begin());
+         	               estado = 9;
+         		       break;
+         		    }
+         
+         		    estado = 9;
+         		    break;
+         
+         	// **************************************************************
+         	      case 9:
+         		      buffer[buffer_i] = '\0';
+         		      simbolos.push_back(Token(TipoToken::SIGNO_CONDICION, buffer));
+         		      estado = 0; buffer_i = 0;
+         		      break;
+         
+              // **************************************************************
+         			
+			
 			case 10:
 				switch (ch)
 				{
@@ -129,7 +184,7 @@ vector<Token> analizar (vector<char>& contenido)
 
 				break;
 
-			// **************************************************************
+	      // **************************************************************
 			case 11:
 				estado = 0; buffer_i = 0;
 				break;
