@@ -33,6 +33,44 @@ struct Token
 };
 
 /*
+**	Retorna el nombre de un TipoToken como string.
+*/
+const char *nombreTipoToken (TipoToken valor)
+{
+	switch (valor)
+	{
+		case TipoToken::ENTERO:
+			return "ENTERO";
+
+		case TipoToken::PORCENTAJE:
+			return "PORCENTAJE";
+
+		case TipoToken::SIGNO_ARITMETICO:
+			return "SIGNO_ARITMETICO";
+
+		case TipoToken::SIGNO_COMA:
+			return "SIGNO_COMA";
+
+		case TipoToken::SIGNO_IGUAL:
+			return "SIGNO_IGUAL";
+
+		case TipoToken::SIGNO_CONDICION:
+			return "SIGNO_CONDICION";
+
+		case TipoToken::KEYWORD:
+			return "KEYWORD";
+
+		case TipoToken::IDENTIFICADOR_VARIABLE:
+			return "IDENTIFICADOR_VARIABLE";
+
+		case TipoToken::IDENTIFICADOR_LED:
+			return "IDENTIFICADOR_LED";
+	}
+
+	return "??";
+}
+
+/*
 **	Analiza un vector de char (contenido) y retorna una tabla de simbolos.
 */
 vector<Token> analizar (vector<char>& contenido)
@@ -113,6 +151,16 @@ vector<Token> analizar (vector<char>& contenido)
 					case 'I': case 'i':
 						contenido.erase(contenido.begin());
 						estado = 15;
+						break;
+
+					case 'L': case 'l':
+						contenido.erase(contenido.begin());
+						estado = 16;
+						break;
+
+					case 'V': case 'v':
+						contenido.erase(contenido.begin());
+						estado = 17;
 						break;
 
 					default:
@@ -437,8 +485,8 @@ vector<Token> analizar (vector<char>& contenido)
 
 				cout << "Error: Simbolo " << ch << " no definido" << endl;
 				break;
-			
-		       // **************************************************************
+
+			// **************************************************************
 			case 16:
 				if (ch >= '0' && ch <= '9')
 				{
@@ -463,7 +511,8 @@ vector<Token> analizar (vector<char>& contenido)
 
 				cout << "Error: Simbolo " << ch << " no definido" << endl;
 				break;
-			
+
+			// **************************************************************
 			case 33:
 				if (ch >= '0' && ch <= '9')
 				{

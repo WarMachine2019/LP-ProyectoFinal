@@ -8,7 +8,7 @@ using std::cout;
 using std::endl;
 
 /*
-**	Incluido el archivo scanner.hpp que tiene el código del analizador de léxico.
+**	Incluir el archivo scanner.hpp que tiene el código del analizador de léxico.
 */
 #include "scanner.hpp"
 
@@ -45,7 +45,7 @@ vector<char>& leerDatos (const char *src)
 /**
 **	Función principal.
 **
-**	Vamos a probar que la función leerDatos() funciona correctamente.
+**	Lee los datos de un archivo y los pasa por el scanner (analizador léxico).
 */
 
 int main (int argc, char *argv[])
@@ -71,9 +71,10 @@ int main (int argc, char *argv[])
 	while (simbolos.size() != 0)
 	{
 		Token x = simbolos.front();
-		cout << x.tipo << ": " << x.valor << endl;
+		cout << nombreTipoToken(x.tipo) << ": " << x.valor << endl;
 
 		simbolos.erase(simbolos.begin());
 	}
 
 	return 0;
+}
