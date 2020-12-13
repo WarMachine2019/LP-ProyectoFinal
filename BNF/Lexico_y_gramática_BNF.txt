@@ -43,29 +43,22 @@
 
 -------- GRAMATICA ----------
 
-<sentencia-set> ::= 'SET' <identificador-led> ',' <porcentaje>
-<sentencia-set> ::= 'SET' <identificador-variable> ',' <porcentaje>
+<programa>::=<bloque-sentencias>|<sentencia>
+
+<sentencia-set> ::= 'SET' <identificador-led> ',' <porcentaje>|<sentencia-set> ::= 'SET' <identificador-variable> ',' <porcentaje>
 
 <sentencia-sleep> ::= 'SLEEP' <entero>
 <sentencia-asignacion> ::= <identificador-variable> '=' <expresion>
 
 <sentencia-while> ::= 'WHILE' <bloque-sentencias> 'END'
 
-<sentencia-if> ::= 'IF' <condicion> <bloque-sentencias> 'END'
-<sentencia-if> ::= 'IF' <condicion> <bloque-sentencias> 'ELSE' <bloque-sentencias> 'END'
+<sentencia-if> ::= 'IF' <condicion> <bloque-sentencias> 'END'| 'IF' <condicion> <bloque-sentencias> 'ELSE' <bloque-sentencias> 'END'
 
-<sentencia> ::= <sentencia-set>
-<sentencia> ::= <sentencia-sleep>
-<sentencia> ::= <sentencia-asignacion>
-<sentencia> ::= <sentencia-while>
-<sentencia> ::= <sentencia-if>
+<sentencia> ::= <sentencia-set>|<sentencia-sleep>|<sentencia-asignacion>|<sentencia-while>|<sentencia-while>
 
-<bloque-sentencias> ::= <bloque-sentencias> <sentencia>
-<bloque-sentencias> ::= <sentencia>
+<bloque-sentencias> ::= <bloque-sentencias> <sentencia>|<sentencia>
 
-<condicion> ::= <condicion> <signo-condicion> <condicion>
-<condicion> ::= <expresion>
+<condicion> ::= <condicion> <signo-condicion> <condicion>|<expresion>
 
-<expresion> ::= <expresion> <signo-aritmetico> <expresion>
-<expresion> ::= <entero>
-<expresion> ::= <identificador-variable>
+<expresion> ::= <expresion> <signo-aritmetico> <expresion>|<entero>|<identificador-variable>
+
