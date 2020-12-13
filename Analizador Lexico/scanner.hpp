@@ -70,41 +70,6 @@ vector<Token> analizar (vector<char>& contenido)
 						estado = 10;
 						break;
 				
-					case '-': case '+':
-						contenido.erase(contenido.begin());
-						estado = 4;
-						break;
-
-					case ',':
-						contenido.erase(contenido.begin());
-						estado = 5;
-						break;
-
-					case '=':
-						contenido.erase(contenido.begin());
-						estado = 6;
-						break;
-
-					case '<':
-						contenido.erase(contenido.begin());
-						estado = 7;
-						break;
-
-					case '>':
-						contenido.erase(contenido.begin());
-						estado = 8;
-						break;
-
-					case 'W': case 'w':
-						contenido.erase(contenido.begin());
-						estado = 12;
-						break;
-
-					case 'S': case 's':
-						contenido.erase(contenido.begin());
-						estado = 13;
-						break;
-
 					default:
 						cout << "Error: Simbolo " << ch << " no definido" << endl;
 						return simbolos;
@@ -146,62 +111,63 @@ vector<Token> analizar (vector<char>& contenido)
 				simbolos.push_back(Token(TipoToken::PORCENTAJE, buffer));
 				estado = 0; buffer_i = 0;
 				break;
-
-			// **************************************************************
+				
 			case 4:
-				buffer[buffer_i] = '\0';
-				simbolos.push_back(Token(TipoToken::SIGNO_ARITMETICO, buffer));
-				estado = 0; buffer_i = 0;
-				break;
-
-			// **************************************************************
-			case 5:
-				buffer[buffer_i] = '\0';
-				simbolos.push_back(Token(TipoToken::SIGNO_COMA, buffer));
-				estado = 0; buffer_i = 0;
-				break;
-
-			// **************************************************************
-			case 6:
-				buffer[buffer_i] = '\0';
-				simbolos.push_back(Token(TipoToken::SIGNO_IGUAL, buffer));
-				estado = 0; buffer_i = 0;
-				break;
-
-			// **************************************************************
-			case 7:
-				if (ch == '=')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 9;
-					break;
-				}
-
-				estado = 9;
-				break;
-
-			// **************************************************************
-			case 8:
-				if (ch == '=')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 9;
-					break;
-				}
-
-				estado = 9;
-				break;
-
-			// **************************************************************
-			case 9:
-				buffer[buffer_i] = '\0';
-				simbolos.push_back(Token(TipoToken::SIGNO_CONDICION, buffer));
-				estado = 0; buffer_i = 0;
-				break;
-
-			// **************************************************************
+         		         buffer[buffer_i] = '\0';
+         		         simbolos.push_back(Token(TipoToken::SIGNO_ARITMETICO, buffer));
+         	 	         estado = 0; buffer_i = 0;
+         		         break;
+         
+         	// **************************************************************
+         	        case 5:
+         		        buffer[buffer_i] = '\0';
+         		        simbolos.push_back(Token(TipoToken::SIGNO_COMA, buffer));
+         		        estado = 0; buffer_i = 0;
+         		        break;
+         
+         	// **************************************************************
+         	       case 6:
+         		       buffer[buffer_i] = '\0';
+         		       simbolos.push_back(Token(TipoToken::SIGNO_IGUAL, buffer));
+         		       estado = 0; buffer_i = 0;
+         		       break;
+         
+         	// **************************************************************
+         	      case 7:
+         		      if (ch == '=')
+         		      {
+         			 buffer[buffer_i++] = ch;
+         			 contenido.erase(contenido.begin());
+         			 estado = 9;
+         			 break;
+         		      }
+         
+         		      estado = 9;
+         		      break;
+         
+         	// **************************************************************
+         	     case 8:
+         		    if (ch == '=')
+         		    {
+         		       buffer[buffer_i++] = ch;
+         	               contenido.erase(contenido.begin());
+         	               estado = 9;
+         		       break;
+         		    }
+         
+         		    estado = 9;
+         		    break;
+         
+         	// **************************************************************
+         	      case 9:
+         		      buffer[buffer_i] = '\0';
+         		      simbolos.push_back(Token(TipoToken::SIGNO_CONDICION, buffer));
+         		      estado = 0; buffer_i = 0;
+         		      break;
+         
+              // **************************************************************
+         			
+			
 			case 10:
 				switch (ch)
 				{
@@ -218,141 +184,9 @@ vector<Token> analizar (vector<char>& contenido)
 
 				break;
 
-			// **************************************************************
+	      // **************************************************************
 			case 11:
 				estado = 0; buffer_i = 0;
-				break;
-
-			// **************************************************************
-			case 12:
-				if (ch == 'H' || ch == 'h')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 18;
-					break;
-				}
-
-				cout << "Error: Simbolo " << ch << " no definido" << endl;
-				break;
-
-			// **************************************************************
-			case 13:
-				if (ch == 'E' || ch == 'e')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 23;
-					break;
-				}
-
-				if (ch == 'L' || ch == 'l')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 25;
-					break;
-				}
-
-				cout << "Error: Simbolo " << ch << " no definido" << endl;
-				break;
-
-			// **************************************************************
-			case 18:
-				if (ch == 'I' || ch == 'i')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 19;
-					break;
-				}
-
-				cout << "Error: Simbolo " << ch << " no definido" << endl;
-				break;
-
-			// **************************************************************
-			case 23:
-				if (ch == 'T' || ch == 't')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 22;
-					break;
-				}
-
-				cout << "Error: Simbolo " << ch << " no definido" << endl;
-				break;
-
-			// **************************************************************
-			case 25:
-				if (ch == 'E' || ch == 'e')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 26;
-					break;
-				}
-
-				cout << "Error: Simbolo " << ch << " no definido" << endl;
-				break;
-
-			// **************************************************************
-			case 19:
-				if (ch == 'L' || ch == 'l')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 20;
-					break;
-				}
-
-				cout << "Error: Simbolo " << ch << " no definido" << endl;
-				break;
-
-			// **************************************************************
-			case 22:
-				buffer[buffer_i] = '\0';
-				simbolos.push_back(Token(TipoToken::KEYWORD, buffer));
-				estado = 0; buffer_i = 0;
-				break;
-
-			// **************************************************************
-			case 26:
-				if (ch == 'E' || ch == 'e')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 27;
-					break;
-				}
-
-				cout << "Error: Simbolo " << ch << " no definido" << endl;
-				break;
-
-			// **************************************************************
-			case 20:
-				if (ch == 'E' || ch == 'e')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 22;
-					break;
-				}
-
-				cout << "Error: Simbolo " << ch << " no definido" << endl;
-				break;
-
-			// **************************************************************
-			case 27:
-				if (ch == 'P' || ch == 'p')
-				{
-					buffer[buffer_i++] = ch;
-					contenido.erase(contenido.begin());
-					estado = 22;
-					break;
-				}
-
-				cout << "Error: Simbolo " << ch << " no definido" << endl;
 				break;
 		}
 	}
