@@ -105,6 +105,16 @@ vector<Token> analizar (vector<char>& contenido)
 						estado = 13;
 						break;
 
+					case 'E': case 'e':
+						contenido.erase(contenido.begin());
+						estado = 14;
+						break;
+
+					case 'I': case 'i':
+						contenido.erase(contenido.begin());
+						estado = 15;
+						break;
+
 					default:
 						cout << "Error: Simbolo " << ch << " no definido" << endl;
 						return simbolos;
@@ -345,6 +355,79 @@ vector<Token> analizar (vector<char>& contenido)
 			// **************************************************************
 			case 27:
 				if (ch == 'P' || ch == 'p')
+				{
+					buffer[buffer_i++] = ch;
+					contenido.erase(contenido.begin());
+					estado = 22;
+					break;
+				}
+
+				cout << "Error: Simbolo " << ch << " no definido" << endl;
+				break;
+
+			// **************************************************************
+			case 14:
+				if (ch == 'N' || ch == 'n')
+				{
+					buffer[buffer_i++] = ch;
+					contenido.erase(contenido.begin());
+					estado = 28;
+					break;
+				}
+
+				if (ch == 'X' || ch == 'x')
+				{
+					buffer[buffer_i++] = ch;
+					contenido.erase(contenido.begin());
+					estado = 29;
+					break;
+				}
+
+				cout << "Error: Simbolo " << ch << " no definido" << endl;
+				break;
+
+			// **************************************************************
+			case 15:
+				if (ch == 'F' || ch == 'f')
+				{
+					buffer[buffer_i++] = ch;
+					contenido.erase(contenido.begin());
+					estado = 22;
+					break;
+				}
+
+				cout << "Error: Simbolo " << ch << " no definido" << endl;
+				break;
+
+			// **************************************************************
+			case 28:
+				if (ch == 'D' || ch == 'd')
+				{
+					buffer[buffer_i++] = ch;
+					contenido.erase(contenido.begin());
+					estado = 22;
+					break;
+				}
+
+				cout << "Error: Simbolo " << ch << " no definido" << endl;
+				break;
+
+			// **************************************************************
+			case 29:
+				if (ch == 'I' || ch == 'i')
+				{
+					buffer[buffer_i++] = ch;
+					contenido.erase(contenido.begin());
+					estado = 30;
+					break;
+				}
+
+				cout << "Error: Simbolo " << ch << " no definido" << endl;
+				break;
+
+			// **************************************************************
+			case 30:
+				if (ch == 'T' || ch == 't')
 				{
 					buffer[buffer_i++] = ch;
 					contenido.erase(contenido.begin());
