@@ -437,6 +437,72 @@ vector<Token> analizar (vector<char>& contenido)
 
 				cout << "Error: Simbolo " << ch << " no definido" << endl;
 				break;
+			
+		       // **************************************************************
+			case 16:
+				if (ch >= '0' && ch <= '9')
+				{
+					buffer[buffer_i++] = ch;
+					contenido.erase(contenido.begin());
+					estado = 33;
+					break;
+				}
+
+				cout << "Error: Simbolo " << ch << " no definido" << endl;
+				break;
+
+			// **************************************************************
+			case 17:
+				if (ch >= '0' && ch <= '9')
+				{
+					buffer[buffer_i++] = ch;
+					contenido.erase(contenido.begin());
+					estado = 31;
+					break;
+				}
+
+				cout << "Error: Simbolo " << ch << " no definido" << endl;
+				break;
+			
+			case 33:
+				if (ch >= '0' && ch <= '9')
+				{
+					buffer[buffer_i++] = ch;
+					contenido.erase(contenido.begin());
+					estado = 33;
+					break;
+				}
+
+				estado = 34;
+				break;
+
+			// **************************************************************
+			case 31:
+				if (ch >= '0' && ch <= '9')
+				{
+					buffer[buffer_i++] = ch;
+					contenido.erase(contenido.begin());
+					estado = 31;
+					break;
+				}
+
+				estado = 32;
+				break;
+
+			// **************************************************************
+			case 32:
+				buffer[buffer_i] = '\0';
+				simbolos.push_back(Token(TipoToken::IDENTIFICADOR_VARIABLE, buffer));
+				estado = 0; buffer_i = 0;
+				break;
+
+
+			// **************************************************************
+			case 34:
+				buffer[buffer_i] = '\0';
+				simbolos.push_back(Token(TipoToken::IDENTIFICADOR_LED, buffer));
+				estado = 0; buffer_i = 0;
+				break;
 		}
 	}
 
