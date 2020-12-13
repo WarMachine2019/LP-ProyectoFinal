@@ -72,9 +72,10 @@ int main (int argc, char *argv[])
 	{
 		Token x = simbolos.front();
 		cout << nombreTipoToken(x.tipo) << ": " << x.valor << endl;
-
+                salida << nombreTipoToken(x.tipo) << ": " << x.valor << endl;
 		simbolos.erase(simbolos.begin());
 	}
-
+	
+	salida.close();
 	return 0;
 }
